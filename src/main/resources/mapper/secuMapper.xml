@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.seung.secu.dao.secuDAO">
+
+    <insert id="secuJoin" parameterType="secu">
+        INSERT INTO SECURITY VALUES ( #{secuMail}, #{secuPw})
+    </insert>
+
+    <select id="secuLogin" parameterType="secu" resultType="secu">
+        SELECT * FROM SECURITY WHERE SECUMAIL = #{secuMail}
+    </select>
+
+    <insert id="dmap3" parameterType="store">
+        INSERT INTO STORE VALUES ( #{storeName}, #{lat} , #{lng} )
+    </insert>
+
+</mapper>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE-edge"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="author" content="seung"/>
+    <meta name="description" content="secu 프로젝트 index페이지"/>
+    <title>Spring Boot - secu </title>
+</head>
+<body>
+    <form action="join" method="post">
+        <p>이메일 : <input type="email" name="secuMail"></p>
+        <p>비밀번호 : <input type="password" name="secuPw"></p>
+        <input type="submit" value="전송">
+    </form>
+
+    <hr/>
+
+    <form action="login" method="post">
+        <p>이메일 : <input type="email" name="secuMail"></p>
+        <p>비밀번호 : <input type="password" name="secuPw"></p>
+        <input type="submit" value="전송">
+    </form>
+
+    <hr/>
+    <!-- dmap1로 이동하는 버튼-->
+    <a href="dmap1">KAKAO_MAP1 으로 이동</a>
+
+    <hr/>
+    <!-- dmap2로 이동하는 버튼-->
+    <a href="dmap2">KAKAO_MAP2 으로 이동</a>
+
+</body>
+
+</html>

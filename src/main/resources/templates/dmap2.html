@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE-edge"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="author" content="seung"/>
+    <meta name="description" content="secu 프로젝트 dmap2 페이지"/>
+    <title>Spring Boot - secu </title>
+</head>
+<body>
+
+
+<!--지도-->
+<div id="map" style="width:60%;height:450px;"></div>
+
+<p><em>지도를 클릭해주세요!</em></p>
+<!--클릭한 곳의 위도와 경도를 나타내는 공간-->
+<div id="clickLatlng"></div>
+
+<form action="dmap3" method="get">
+
+    <input type="text" name="storeName" />
+    <input type="hidden" name="lat" id="lat" />
+    <input type="hidden" name="lng" id="lng" />
+
+    <input type="submit" value="전송" />
+</form>
+
+</body>
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=251b83c003c878d6dc239ae4110ccd3a"></script>
+<script>
+
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+        mapOption = {
+            center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+            level: 3 // 지도의 확대 레벨
+        };
+
+    var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+    // 지도를 클릭한 위치에 표출할 마커입니다
+    var marker = new kakao.maps.Marker({
+        // 지도 중심좌표에 마커를 생성합니다
+        position: map.getCenter()
+    });
+    // 지도에 마커를 표시합니다
+    marker.setMap(map);
+
+    // 지도에 클릭 이벤트를 등록합니다
+    // 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
+    kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
+
+        // 클릭한 위도, 경도 정보를 가져옵니다
+        var latlng = mouseEvent.latLng;
+
+        // 마커 위치를 클릭한 위치로 옮깁니다
+        marker.setPosition(latlng);
+
+        // +추가 : 위도(lat)랑 경도(lng) 값을 설정해서 dmap3로 넘겨주기
+        document.getElementById("lat").value = latlng.getLat();
+        document.getElementById("lng").value = latlng.getLng();
+
+        var message = '클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
+        message += '경도는 ' + latlng.getLng() + ' 입니다';
+
+        var resultDiv = document.getElementById('clickLatlng');
+        resultDiv.innerHTML = message;
+
+    });
+</script>
+
+</html>
